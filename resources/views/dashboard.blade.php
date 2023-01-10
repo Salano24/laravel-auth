@@ -1,71 +1,23 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.admin')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+                <div class="card-body">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
-</head>
-
-<body>
-    <div id="app">
-
-
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{{url('/') }}">Laravel-auth</a>
-            <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-nav">
-                <div class="nav-item text-nowrap">
-                    <a class="nav-link px-3" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Sign out</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
-        </header>
-
-        <div class="container-fluid">
-            <div class="row">
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                    <div class="position-sticky pt-3 sidebar-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{{ url('admin') }}">
-                                    <span data-feather="home" class="align-text-bottom"></span>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span data-feather="file" class="align-text-bottom"></span>
-                                    Projects
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
         </div>
-        <main class="mt-4">
-            @yield('content')
-        </main>
-
     </div>
-</body>
-
-</html>
+</div>
+@endsection
