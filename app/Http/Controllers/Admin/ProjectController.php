@@ -15,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::orderByDesc('id')->get();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -36,7 +37,12 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $slug_data = Project::createSlug($val_data['title']);
+        $val_data['slug'] =  $slug_data;
+        $project = Project::create($val_data);
+
+        return redirect()->route('admin.projects.index')->with('message', "$project->title add successfully");
     }
 
     /**
@@ -47,7 +53,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
