@@ -4,6 +4,35 @@ body {
     font-size: .875rem;
   }
 
+  .segnaposto_index{
+    display: flex;
+    width: 80px;
+    aspect-ratio: 1/1;
+    color: lightgray;
+    background-color: gray;
+    align-items: center;
+    justify-content: center; 
+
+    h6{
+      font-size: 10px;
+    }
+  }
+  .segnaposto{
+    display: flex;
+    width: 140px;
+    aspect-ratio: 1/1;
+    color: lightgray;
+    background-color: gray;
+    align-items: center;
+    justify-content: center;
+
+  }
+  @media screen and (min-width: 1400px) {
+    .min{
+      min-width: 170px;
+    }
+    }
+
   .image{
 
     width: 30%;
